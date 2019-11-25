@@ -11,7 +11,7 @@ Should work under any recent webserver, simplest way is to just use built in web
 
 ## Api calls:
 
-##### GET(/api/gameq/) : 
+### GET(/api/gameq/) : 
 Returns state of servers, defined in server.json file (it has to be place in the same directory as index.php)
 
 server.json file example:
@@ -26,7 +26,7 @@ server.json file example:
   }
 ]
 
-##### POST(/api/gameq/) : 
+### POST(/api/gameq/) : 
 Return state of server, nder this address.
 
 Example body (raw,json)

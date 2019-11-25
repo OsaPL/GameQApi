@@ -15,6 +15,7 @@ Should work under any recent webserver, simplest way is to just use built in web
 Returns state of servers, defined in server.json file (it has to be place in the same directory as index.php)
 
 server.json file example:
+```
 [
   {
     "type": "minecraft",
@@ -25,16 +26,19 @@ server.json file example:
     "host": "192.168.42.69:44400"
   }
 ]
+```
 
 ### POST(/api/gameq/) : 
 Return state of server, nder this address.
 
 Example body (raw,json)
+```
 {
 	"type":"tf2",
 	"ip":"enemiespotted.io",
 	"port":"27015"
 }
+```
 
 ## Dependencies:
 - Elementary framework (1.3 and up)

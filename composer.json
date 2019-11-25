@@ -1,0 +1,6 @@
+{
+    "require": {
+        "elementaryframework/water-pipe": "^1.3",
+		"austinb/gameq": "~3.0"
+    }
+}

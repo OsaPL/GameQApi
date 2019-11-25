@@ -1,16 +1,18 @@
 
-Simple GameQ Rest server
+#Simple GameQ Rest server
 
-Installation:
+##Installation:
 1. Run 'compose install' (or just update)
 2. Generate autoload.php with 'composer dump-autoload -o' (-o is for production, can be omitted)
 3. Profit!
 
-Running:
+##Running:
 Should work under any recent webserver, simplest way is to just use built in webserver for Php (7.3 for example) and just run 'php -S localhost:8888'
 
-Api calls:
-GET(/api/gameq/) : Returns state of servers, defined in server.json file (it has to be place in the same directory as index.php)
+##Api calls:
+
+#####GET(/api/gameq/) : 
+Returns state of servers, defined in server.json file (it has to be place in the same directory as index.php)
 
 server.json file example:
 [
@@ -24,7 +26,8 @@ server.json file example:
   }
 ]
 
-POST(/api/gameq/) : Return state of server, nder this address.
+#####POST(/api/gameq/) : 
+Return state of server, nder this address.
 
 Example body (raw,json)
 {
@@ -33,6 +36,6 @@ Example body (raw,json)
 	"port":"27015"
 }
 
-Dependencies:
--Elementary framework (1.3 and up)
--GameQ library (3.0 and up)
+##Dependencies:
+- Elementary framework (1.3 and up)
+- GameQ library (3.0 and up)

@@ -15,14 +15,12 @@ use ElementaryFramework\WaterPipe\HTTP\Response\Response;
 $basePipe = new WaterPipe;
 
 // Our login request
-$basePipe->post("/api/gameq", function (Request $req, Response $res) {
+$basePipe->post("/api/gameq", function (Request $req, Response $res) 
+{
     // Get request data sent by the client
     $body = $req->getBody();
-    $type = $body["type"];
-    $ip = $body["ip"];
-    $port = $body["port"];
 
-	////TODO! Check data correctness!
+    ////TODO! Check data correctness!
     //if ($type === "" || $ip === "" || $port === "") {
 	//	// Send an unsuccessful signal to the client
     //    $res->sendJson(array(
@@ -30,18 +28,46 @@ $basePipe->post("/api/gameq", function (Request $req, Response $res) {
     //        "error" => "Parameters cant be empty!"
     //    ));
     //} else {
-	// Send a successful signal to the client
-	$GameQ = new \GameQ\GameQ();
-	$GameQ->addServer([
-		'type' => $type,
-		'host' => $ip . ':' . $port,
-	]);
+	
+    $GameQ = new \GameQ\GameQ();
+	
+    $isArray = is_array($body["servers"]);
+
+    // Checking if we have an array of servers to process.
+	if($isArray)
+    {
+        foreach ($body["servers"] as &$value) 
+        {
+            $type = $value["type"];
+            $ip = $value["ip"];
+            $port = $value["port"];
+
+	        $GameQ->addServer([
+		        'type' => $type,
+		        'host' => $ip . ':' . $port,
+	        ]);
+        }
+	}
+    // If single entry
+    else
+    {
+        $type = $body["type"];
+        $ip = $body["ip"];
+        $port = $body["port"];
+
+	    $GameQ->addServer([
+		    'type' => $type,
+		    'host' => $ip . ':' . $port,
+	    ]);
+	}
+
 	$data = $GameQ->process();
     $res->sendJson($data);
 });
 
 // Our posts retrieving request
-$basePipe->get("/api/gameq", function (Request $req, Response $res) {
+$basePipe->get("/api/gameq", function (Request $req, Response $res) 
+{
     // Retrieve server state, from what is defined in server.json
 	$GameQ = new \GameQ\GameQ();
 	$GameQ->addServersFromFiles('servers.json');

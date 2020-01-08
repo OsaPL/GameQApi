@@ -29,14 +29,34 @@ Returns state of servers, defined in server.json file (it has to be place in the
 ```
 
 ### POST(`/api/gameq/`) : 
-Return state of server, nder this address.
+Return state of server/servers.
 
-> Example body (raw,json)
+> Example bodies (raw,json)
+#### Single server 
 ```
 {
 	"type":"tf2",
 	"ip":"enemiespotted.io",
 	"port":"27015"
+}
+```
+
+#### Multiple servers
+```
+{
+	"servers":
+	[
+		{
+			"type":"minecraft",
+			"ip":"coolgamerguys.gov,
+			"port":"25565"
+		},
+		{
+			"type":"warsow",
+			"ip":"192.168.42.69",
+			"port":"44400"
+		}
+	]
 }
 ```
 
